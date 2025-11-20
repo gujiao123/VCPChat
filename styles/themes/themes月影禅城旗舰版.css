@@ -1,0 +1,139 @@
+/*
+ * styles/themes/themes月影禅城.css
+ * Curated by 可可
+ * 月影禅城主题 - 融合日式庭院禅意与现代都市光影
+ * 竹筒惊鹿的水滴声波 × 玻璃幕墙的动态倒影
+ */
+ 
+:root {
+    /* --- 壁纸设定 --- */
+    --chat-wallpaper-dark: url('../../assets/wallpaper/月影禅城官方旗舰版.jpeg');
+
+    /* --- 基础色彩 --- */
+    --primary-bg: #1a1a2e;      /* 深空蓝 - 主背景 */
+    --secondary-bg: #16213e;      /* 午夜蓝 - 侧边栏 */
+    --tertiary-bg: #0f1419;       /* 近乎纯黑 - 聊天区 */
+    --accent-bg: #2c3e50;        /* 悬停/选中 - 钢蓝 */
+    --border-color: #3498db;         /* 玻璃蓝 - 边框 */
+    --input-bg: rgba(26, 26, 46, 0.7); /* 半透明深蓝 */
+
+    /* --- 文字色彩 --- */
+    --primary-text: #ecf0f1;        /* 月光白 - 主要文字 */
+    --secondary-text: #bdc3c7;     /* 银灰 - 次要文字 */
+    --highlight-text: #9b59b6;     /* 月光紫 - 高亮文字 */
+    --text-on-accent: #ffffff;       /* 纯白 - 强调背景文字 */
+    --placeholder-text: #7f8c8d;     /* 石灰色 - 占位文字 */
+    --quoted-text: #e74c3c;        /* 樱花粉 - 引用文字 */
+    --user-text: #ecf0f1;           /* 用户气泡文字 */
+    --agent-text: #ecf0f1;           /* AI气泡文字 */
+
+    /* --- 气泡色彩 (磨砂玻璃特效) --- */
+    --user-bubble-bg: rgba(52, 152, 219, 0.15); /* 玻璃蓝半透明 */
+    --assistant-bubble-bg: rgba(44, 62, 80, 0.1); /* 钢蓝半透明 */
+    
+    /* --- 竹筒水滴特效变量 --- */
+    --water-ripple-color: rgba(26, 188, 156, 0.3); /* 竹叶绿 - 涟漪效果 */
+    --glass-reflection: linear-gradient(135deg, 
+        rgba(255,255,255,0.1) 0%, 
+        rgba(255,255,255,0.05) 50%, 
+        rgba(255,255,255,0.02) 100%);
+
+    /* --- UI元素色彩 --- */
+    --button-bg: #3498db;           /* 玻璃蓝 - 按钮 */
+    --button-hover-bg: #2980b9;     /* 深蓝 - 按钮悬停 */
+    --danger-color: #e74c3c;        /* 樱花粉 - 危险操作 */
+    --success-color: #1abc9c;       /* 竹叶绿 - 成功操作 */
+    --tool-bubble-bg: rgba(155, 89, 182, 0.15); /* 月光紫半透明 */
+    --tool-bubble-border: #9b59b6; /* 工具气泡边框 */
+
+    /* --- 动态特效 --- */
+    --panel-bg-dark: rgba(22, 33, 62, 0.75); /* 午夜蓝半透明 */
+}
+
+/* === 竹筒水滴涟漪特效 === */
+@keyframes waterRipple {
+    0% { transform: scale(0.8); opacity: 0.8; }
+    100% { transform: scale(1.2); opacity: 0; }
+}
+
+.water-ripple {
+    position: absolute;
+    border: 2px solid var(--water-ripple-color);
+    border-radius: 50%;
+    animation: waterRipple 2s ease-out infinite;
+}
+
+/* === 玻璃幕墙动态倒影 === */
+.glass-reflection {
+    background: var(--glass-reflection);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(52, 152, 219, 0.3);
+    box-shadow: 
+        inset 0 1px 0 rgba(255,255,255,0.1),
+        0 4px 20px rgba(0,0,0,0.2);
+}
+
+/* === 深夜猫瞳彩蛋 === */
+.chat-container::after {
+    content: '';
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, #f1c40f 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* 午夜时分触发猫瞳 */
+@media (prefers-color-scheme: dark) {
+    .chat-container::after {
+        opacity: 0.7;
+        animation: catBlink 3s infinite;
+    }
+}
+
+@keyframes catBlink {
+    0%, 45%, 55%, 100% { opacity: 0.7; }
+    50% { opacity: 0.3; }
+}
+
+/* === 月光樱花雨增强版 === */
+.sakura-petal {
+    background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\">
+        <path fill=\"%23e74c3c\" d=\"M10 0c-1 0-2 1-2 2 0 1 1-2 2 0 1 1 2 2 0-1-1-2-2z\"/>
+    </svg>');
+    animation: sakuraFall 8s linear infinite;
+    filter: drop-shadow(0 0 3px rgba(231, 76, 60, 0.6));
+}
+
+@keyframes sakuraFall {
+    0% { transform: translateY(-20px) translateX(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(100vh) translateX(20px) rotate(180deg); opacity: 0; }
+}
+
+/* 响应式设计 - 适应不同屏幕 */
+@media (max-width: 768px) {
+    .glass-reflection {
+        backdrop-filter: blur(4px);
+    }
+}
+
+body {
+    background-image: var(--chat-wallpaper-dark);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* 浅色主题变体 */
+body.light-theme {
+    --chat-wallpaper-light: url('../../assets/wallpaper/月影禅城官方旗舰版.jpeg');
+    --primary-bg: #f8f9fa;
+    --secondary-bg: #ffffff;
+    --tertiary-bg: #e9ecef;
+    /* 其他浅色主题变量... */
+}

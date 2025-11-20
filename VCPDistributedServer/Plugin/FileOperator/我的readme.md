@@ -1,0 +1,3 @@
+
+
+注意这个插件的名字是fileoperator 不是服务器那边的servicefileoperator,专门用于本地文件修改
